@@ -6,7 +6,6 @@ const UnathorizedError = require('../errors/unathorized-err');
 const BadRequestError = require('../errors/bad-request-err');
 const user = require('../models/user');
 
-const randomString = 'b002d700beba35a4d4b5d89e99041aab';
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 function findUsers(req, res, next) {
@@ -117,5 +116,5 @@ function login(req, res, next) {
     .catch(next);
 }
 module.exports = {
-  findUsers, createUser, updateUser, updateUserAvatar, login, findUserById, randomString, findMe,
+  findUsers, createUser, updateUser, updateUserAvatar, login, findUserById, findMe,
 };
