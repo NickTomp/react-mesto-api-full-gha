@@ -1,0 +1,14 @@
+.header__button {
+    max-height: 25px;
+    display: inline;
+    text-decoration: none;
+    background-color: black;
+    border: none;
+    color: white;
+    margin-left: auto;
+    padding: 0;
+}
+.header__button:hover {
+    cursor: pointer;
+    opacity: .6;
+}

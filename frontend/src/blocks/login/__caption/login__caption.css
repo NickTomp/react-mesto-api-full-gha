@@ -1,0 +1,14 @@
+.login__caption {
+    margin: 15px auto 0;
+    min-width: 260px;
+    width: 358px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+}
+@media screen and (max-width: 540px) {
+    .login__caption {
+        width: 260px;
+    }
+}

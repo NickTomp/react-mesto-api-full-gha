@@ -1,0 +1,12 @@
+.login__caption-link {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+}
+.login__caption-link:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}

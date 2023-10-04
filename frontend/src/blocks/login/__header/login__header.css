@@ -1,0 +1,14 @@
+.login__header {
+    min-width: 260px;
+    max-width: 358px;
+    margin: auto ;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 900;
+}
+@media screen and (max-width: 540px) {
+    .login__header {
+        font-size: 20px;
+        width: 260px;
+    }
+}
