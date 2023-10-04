@@ -37,7 +37,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.55.79
+IP 158.160.55.79
 
 Frontend https://ktomp.mesto.nomoredomainsrocks.ru
 
