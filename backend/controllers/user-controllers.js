@@ -7,6 +7,7 @@ const BadRequestError = require('../errors/bad-request-err');
 const user = require('../models/user');
 
 const randomString = 'b002d700beba35a4d4b5d89e99041aab';
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 function findUsers(req, res, next) {
   user.find({})
@@ -104,7 +105,7 @@ function login(req, res, next) {
             return Promise.reject(new UnathorizedError('Неверный логин или пароль'))
               .catch(next);
           }
-          const token = jwt.sign({ _id: resultUser._id }, randomString);
+          const token = jwt.sign({ _id: resultUser._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
           res.cookie('jwt', token, {
             maxAge: 3600000 * 24 * 7,
             httpOnly: true,

@@ -32,19 +32,6 @@ function App() {
   const [userEmail, setUserEmail] = React.useState(false);
   const navigate = useNavigate();
   React.useEffect(() => {
-    api.getUserInfo()
-      .then((data) => {
-        setCurrentUser({ name: data.name, about: data.about, avatar: data.avatar, _id: data._id })
-      })
-      .then(() => {
-        api.getCardsArray()
-          .then((cardsArray) => {
-            setCardsArray(cardsArray)
-          })
-      })
-      .catch((err) => alert(`${err} - не удалось загрузить данные`))
-  }, [])
-  React.useEffect(() => {
     handleValidate()
   }, [])
   function handleEditAvatarClick() {
@@ -64,7 +51,8 @@ function App() {
     setSelectedCard({ name: '', link: '' })
   }
   function handleCardLike(card, setCards) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
+    console.log(isLiked, currentUser._id, card.likes)
     api.changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
@@ -82,7 +70,7 @@ function App() {
   function handleUpdateUser(data) {
     api.editProfileInfo(data)
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data.data);
         closeAllPopups();
       })
       .catch((err) => alert(`${err} - не удалось отредактировать профиль`));
@@ -90,7 +78,7 @@ function App() {
   function handleUpdateAvatar(link) {
     api.editProfileAvatar(link)
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data.data);
         closeAllPopups();
       })
       .catch((err) => alert(`${err} - не удалось обновить аватар`));
@@ -98,7 +86,7 @@ function App() {
   function handleAddPlace(link, title) {
     api.addNewCard(link, title)
       .then((newCard) => {
-        setCardsArray([newCard, ...cards])
+        setCardsArray([newCard.data, ...cards])
         closeAllPopups();
       })
       .catch((err) => alert(`${err} - не удалось добавить изображение`));
@@ -110,7 +98,7 @@ function App() {
         setIsLoggedIn(true);
       })
       .then(() => {
-        handleValidate(localStorage.getItem('token'))
+        handleValidate()
       })
       .catch((err) => alert(`${err} - не удалось авторизоваться!`));
   }
@@ -125,11 +113,16 @@ function App() {
         setInfoState(false);
       });
   }
-  function handleValidate(jwt) {
-    auth.validate(jwt)
+  function handleValidate() {
+    auth.validate()
       .then((data) => {
         setIsLoggedIn(true);
-        setUserEmail(data.data.email);
+        setCurrentUser({ name: data.name, about: data.about, avatar: data.avatar, _id: data._id })
+        setUserEmail(data.email);
+        api.getCardsArray()
+          .then((cardsArray) => {
+            setCardsArray(cardsArray)
+          })
         navigate('/', {replace: true});
       })
       .catch((err) => alert(`${err} - не удалось авторизоваться, выполните вход!`));

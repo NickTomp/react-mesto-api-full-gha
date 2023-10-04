@@ -1,5 +1,5 @@
 module.exports = [
-  'ktomp.mesto.nomoredomainsrocks.ru',
-  'api.ktomp.mesto.nomoredomainsrocks.ru',
-  'localhost:3000',
+  'https://ktomp.mesto.nomoredomainsrocks.ru',
+  'http://ktomp.mesto.nomoredomainsrocks.ru',
+  'http://localhost:3000',
 ];

@@ -7,6 +7,7 @@ class Auth {
     register(password, email) {
         return fetch(`${this._baseUrl}/signup`, {
             method: 'POST',
+            credentials: 'include',
             headers: this._headers,
             body: JSON.stringify({
                 "password": `${password}`,
@@ -19,6 +20,7 @@ class Auth {
     authorize(password, email) {
         return fetch(`${this._baseUrl}/signin`, {
             method: 'POST',
+            credentials: 'include',
             headers: this._headers,
             body: JSON.stringify({
                 "password": `${password}`,
@@ -26,6 +28,7 @@ class Auth {
             })
         })
             .then(this._getDataFromResponse)
+            
     }
     
     validate() {
@@ -43,7 +46,7 @@ class Auth {
     }
 }
 const auth = new Auth({
-    baseUrl: 'https://api.ktomp.mesto.nomoredomainsrocks.ru',
+    baseUrl: 'http://api.ktomp.mesto.nomoredomainsrocks.ru',
     headers: {
         'Content-Type': 'application/json'
     }
