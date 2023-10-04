@@ -28,12 +28,12 @@ class Auth {
             .then(this._getDataFromResponse)
     }
     
-    validate(jwt) {
+    validate() {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'GET',
+            credentials: 'include',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${jwt}`
             }
         })
             .then(this._getDataFromResponse)
@@ -43,7 +43,7 @@ class Auth {
     }
 }
 const auth = new Auth({
-    baseUrl: 'https://auth.nomoreparties.co',
+    baseUrl: 'https://api.ktomp.mesto.nomoredomainsrocks.ru',
     headers: {
         'Content-Type': 'application/json'
     }

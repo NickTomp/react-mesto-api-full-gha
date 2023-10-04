@@ -45,8 +45,7 @@ function App() {
       .catch((err) => alert(`${err} - не удалось загрузить данные`))
   }, [])
   React.useEffect(() => {
-    const jwt = localStorage.getItem('token')
-    handleValidate(jwt)
+    handleValidate()
   }, [])
   function handleEditAvatarClick() {
     setAvatarPopupOpen(true)
