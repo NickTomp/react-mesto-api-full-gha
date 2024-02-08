@@ -37,11 +37,7 @@
 
 ## Ссылки на проект
 
-IP 158.160.55.79
-
-Frontend https://ktomp.mesto.nomoredomainsrocks.ru
-
-Backend https://api.ktomp.mesto.nomoredomainsrocks.ru
+<https://mesto.ktomp.ru>
 
 ## Автор
 
